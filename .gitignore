@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.env
+.venv/
+venv/
+ENV/
+
+# Docker & Storage
+data/
+redis_data/
+
+# Terraform (İleride kullanacağımız için şimdiden ekliyoruz)
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
