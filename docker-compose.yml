@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   redis:
@@ -21,6 +21,16 @@ services:
       - REDIS_PORT=6379
     depends_on:
       - redis
+    networks:
+      - app_network
+
+  localstack:
+    image: localstack/localstack:3.4
+    container_name: url_shortener_localstack
+    ports:
+      - "4566:4566"
+    environment:
+      - DEBUG=0
     networks:
       - app_network
 
