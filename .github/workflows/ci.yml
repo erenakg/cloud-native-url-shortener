@@ -40,6 +40,7 @@ jobs:
         env:
           REDIS_HOST: localhost
           REDIS_PORT: 6379
+          PYTHONPATH: .
         run: |
           pytest app/test_main.py
 
