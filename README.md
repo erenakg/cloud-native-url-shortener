@@ -46,10 +46,10 @@ flowchart TD
         Runner --> Pytest --> DockerBuild
     end
 
-    Client -->|1. POST /shorten or GET /{code}| Router
-    Router -->|2. Check Cache / Rate Limit| Redis
-    Router -->|3. Persist / Query URL Metadata| DynamoDB
-    Router -->|4. Export Metrics / Raw Logs| S3
+    Client -->|"1. POST /shorten or GET /:code"| Router
+    Router -->|"2. Check Cache / Rate Limit"| Redis
+    Router -->|"3. Persist / Query URL Metadata"| DynamoDB
+    Router -->|"4. Export Metrics / Raw Logs"| S3
 ```
 
 ---
@@ -112,7 +112,16 @@ cloud-native-url-shortener/
 
 ---
 
-### 1. Launch Services with Docker Compose
+### 1. Clone the Repository
+
+```bash
+git clone [https://github.com/erenakg/cloud-native-url-shortener.git](https://github.com/erenakg/cloud-native-url-shortener.git)
+cd cloud-native-url-shortener
+```
+
+---
+
+### 2. Launch Services with Docker Compose
 
 Start the FastAPI application, Redis cache, and LocalStack AWS emulator:
 
@@ -127,7 +136,7 @@ docker compose ps
 
 ---
 
-### 2. Provision Emulated Cloud Infrastructure with Terraform
+### 3. Provision Emulated Cloud Infrastructure with Terraform
 
 Initialize and apply the Terraform configuration targeting the local LocalStack instance:
 
@@ -150,7 +159,7 @@ aws --endpoint-url=http://localhost:4566 --profile localstack dynamodb list-tabl
 
 ---
 
-### 3. Test the Application Endpoints
+### 4. Test the Application Endpoints
 
 **Health Check:**
 ```bash
@@ -161,12 +170,12 @@ curl -X GET http://localhost:8000/health
 ```bash
 curl -X POST http://localhost:8000/shorten \
      -H "Content-Type: application/json" \
-     -d '{"url": "https://github.com/erenakg"}'
+     -d '{"url": "[https://github.com/erenakg](https://github.com/erenakg)"}'
 ```
 
 ---
 
-### 4. Running the Test Suite Locally
+### 5. Running the Test Suite Locally
 
 Execute the test suite inside the active application container:
 
